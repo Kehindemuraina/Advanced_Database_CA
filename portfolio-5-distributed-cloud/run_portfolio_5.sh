@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
-# ============================================================================
-# LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-# Portfolio 5: Distributed & Cloud Database Runner
-# ============================================================================
+# Runner for Portfolio 5 distributed partitioning
 
 set -e
 
 DB_NAME="lsphcb_emr"
 
-echo "======================================================================"
-echo "RUNNING PORTFOLIO 5: DISTRIBUTED & CLOUD DATABASE EXERCISE"
-echo "======================================================================"
+echo "--- Running Portfolio 5: Distributed and Cloud Partitioning ---"
 
 echo ""
 echo "[1/2] Executing Horizontal Partitioning by Administrative LGA Zones..."

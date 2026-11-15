@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Individual Technical Reflection: LSPHCB EMR System (MIT 8103)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.6cm 1.8cm 1.6cm 1.8cm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    line-height: 1.55;
+    font-size: 10.2pt;
+    margin: 0;
+    padding: 20px 28px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #0f172a;
+    font-weight: 700;
+    margin-top: 1.2em;
+    margin-bottom: 0.45em;
+    line-height: 1.25;
+  }
+
+  h1 {
+    font-size: 18pt;
+    color: #0f2d59;
+    border-bottom: 2.5px solid #0f2d59;
+    padding-bottom: 8px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 13.5pt;
+    color: #1e3a8a;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin-top: 1.4em;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    color: #1e293b;
+    margin-top: 1.1em;
+  }
+
+  h4 {
+    font-size: 10.5pt;
+    color: #334155;
+  }
+
+  p {
+    margin: 0.5em 0;
+    text-align: justify;
+  }
+
+  strong {
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 9pt;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+  }
+
+  pre.code-block {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 0.8em 0;
+    overflow-x: auto;
+    font-size: 8.5pt;
+    line-height: 1.45;
+  }
+
+  pre.code-block code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border: none;
+    font-size: inherit;
+  }
+
+  blockquote {
+    margin: 0.7em 0;
+    padding: 8px 16px;
+    background-color: #f8fafc;
+    border-left: 4px solid #2563eb;
+    color: #334155;
+    font-style: italic;
+  }
+
+  .alert {
+    margin: 0.7em 0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 9.5pt;
+  }
+  .alert-important, .alert-warning {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+  }
+  .alert-note, .alert-tip {
+    background-color: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    color: #166534;
+  }
+
+  ul, ol {
+    margin: 0.5em 0;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 0.3em;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 0.8em 0;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+  }
+
+  td {
+    border: 1px solid #e2e8f0;
+    padding: 6px 10px;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  hr.section-divider {
+    border: none;
+    border-top: 1px dashed #cbd5e1;
+    margin: 1.2em 0;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Page break rules for printing */
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 0.5em;
+  }
+
+  @media print {
+    body {
+      padding: 0;
+    }
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+    pre.code-block {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  }
+</style>
+</head>
+<body>
+<h1 class='heading-1'>Individual Technical Reflection</h1>
+<p><strong>Course:</strong> MIT 8103 – Advanced Database Systems</p>
+<p><strong>Project:</strong> Lagos State Primary Health Care Board (LSPHCB) EMR System</p>
+<p><strong>Author:</strong> Kehinde Muraina</p>
+<p><strong>Role:</strong> Software Developer / Database Systems Engineer</p>
+<hr class='section-divider'/>
+<h2 class='heading-2'>1. Introduction &amp; Context</h2>
+<p>Building an Electronic Medical Records (EMR) system for primary healthcare in Lagos State is not merely an abstract academic exercise—it is a study in designing software that must operate reliably under real-world infrastructure constraints. In Lagos, power supply is intermittent, fiber cables get sliced during road expansions, and PHC clinics range from bustling multi-story facilities in Alimosho to remote riverine clinics in Epe and Badagry.</p>
+<p>Coming into this project with standard application-level SQL experience, my primary goal was to move beyond basic CRUD queries and dive into the mechanics of database internals—indexing behavior, concurrency anomalies, document modeling trade-offs, and distributed reliability.</p>
+<hr class='section-divider'/>
+<h2 class='heading-2'>2. Key Lessons Learned</h2>
+<h3 class='heading-3'>A. The Reality of Progression from Raw Data to 3NF Normalization</h3>
+<p>Prior to this project, I often viewed 3NF normalization as a textbook academic checklist. However, when drafting the initial flat clinic registers (UNF), the dangers of unnormalized data became glaringly obvious:</p>
+<ul>
+<li>In UNF, vitals were trapped in single text strings like <code>&quot;BP: 120/80, Temp: 39.2C&quot;</code>. We could not query patients by temperature thresholds or calculate physiological BMI without breaking the data down into atomic attributes (1NF).</li>
+<li>In 1NF, expanding multi-valued prescriptions resulted in massive partial functional dependencies where patient address and phone number were duplicated across every prescribed medicine row.</li>
+<li>In 2NF, we separated tables by primary keys, but still suffered from transitive dependencies: drug strength and clinic LGA depended on non-key attributes (<code>medication_name</code> and <code>facility_name</code>), creating severe update and deletion anomalies.</li>
+<li>Reaching 3NF by extracting independent <code>medication</code> and <code>facility</code> catalogs taught me that database schema design is the foundation of patient safety.</li>
+</ul>
+<h3 class='heading-3'>B. Grounding Queries in Authentic Clinical Scope: From Typhoid to Malaria</h3>
+<p>A crucial realization during this project was ensuring the analytical queries reflected real clinical practice in Lagos State. While academic briefs often cite enteric typhoid fever, in real Lagos PHCs, true typhoid with blood cultures is virtually nonexistent due to laboratory equipment limitations. Instead, <strong>Malaria (Plasmodium falciparum, ICD-10: B54)</strong> constitutes over 50–65% of daily acute consultations.</p>
+<p>Restructuring Portfolio 2 around <strong>mRDT (Malaria Rapid Diagnostic Test) confirmation, fever triage, and ACT (Artemether-Lumefantrine) dispensing</strong> transformed the project into a genuinely realistic Lagos State Primary Health Care Board epidemiological system.</p>
+<h3 class='heading-3'>C. Demystifying Query Optimization &amp; the PostgreSQL Query Planner</h3>
+<p>One of the most rewarding breakthroughs in this portfolio was moving beyond simply writing SQL queries to actively profiling them with <code>EXPLAIN (ANALYZE, BUFFERS)</code>.</p>
+<ul>
+<li>Seeing the PostgreSQL engine scan thousands of diagnosis rows sequentially made the abstract concept of &quot;I/O cost&quot; tangible.</li>
+<li>Creating a <strong>Partial B-Tree Index</strong> specifically targeting endemic malaria (<code>B54</code>) was an eye-opener. I learned that you don&#x27;t need to index every row in a table; targeting high-frequency operational subsets saves immense disk space and keeps write operations fast. Slashing execution time and buffer reads proved the immense value of targeted indexing.</li>
+</ul>
+<h3 class='heading-3'>D. Concurrency Is Subtle and Dangerous</h3>
+<p>Before implementing the concurrency tests in Portfolio 3, I assumed that putting statements between <code>BEGIN</code> and <code>COMMIT</code> was enough to guarantee safety. Running live concurrent sessions in <code>test_isolation.sh</code> revealed how default <code>READ COMMITTED</code> isolation allows <strong>Phantom Reads</strong>—a clinician can check available appointment slots, see that 1 slot is open, yet have another transaction take it before they commit.</p>
+<p>Similarly, reproducing an authentic PostgreSQL <strong>deadlock</strong> in <code>test_deadlock.sh</code> and seeing <code>ERROR: deadlock detected</code> in terminal output showed me how reverse-order locks can bring a high-volume dispensary to a halt. Learning to enforce <strong>Deterministic Ascending Key Ordering</strong> (<code>ORDER BY inventory_id ASC FOR UPDATE</code>) gave me a reliable engineering pattern to prevent deadlocks completely.</p>
+<h3 class='heading-3'>E. CAP Theorem Is a Clinical Decision, Not Just a Tech Decision</h3>
+<p>Studying distributed topologies and the CAP theorem in the context of Lagos public health showed me that choosing between Consistency (C) and Availability (A) is fundamentally a medical decision. If an emergency obstetric patient is bleeding at 2:00 AM in a clinic with no cellular network, the database cannot freeze waiting for central Alausa datacenter confirmation. The system <strong>must prioritize Availability (AP)</strong> to save lives, while reconciling data asynchronously. Conversely, Master Patient Index identity and opioid drug quotas must enforce strict <strong>Consistency (CP)</strong> to prevent identity fraud and overdose risks.</p>
+<hr class='section-divider'/>
+<h2 class='heading-2'>3. Engineering Trade-Offs Encountered</h2>
+<div class='table-container'><table>
+<thead><tr>
+<th>Engineering Choice</th>
+<th>Alternative Considered</th>
+<th>Trade-Off Decision</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Relational Schema (PostgreSQL) as Core</strong></td>
+<td>Pure NoSQL (MongoDB) throughout</td>
+<td>Chose PostgreSQL for the core system because medical record auditing, foreign key constraints, and multi-table ACID compliance are non-negotiable for legal and clinical accountability.</td>
+</tr>
+<tr>
+<td><strong>Partial Indexes over Full Table Indexes</strong></td>
+<td>Full B-Tree index on <code>(encounter_id, icd10_code)</code></td>
+<td>Chose Partial Index (<code>WHERE icd10_code = &#x27;B54&#x27;</code>) to preserve fast write performance on everyday routine clinical visits while optimizing epidemic reporting.</td>
+</tr>
+<tr>
+<td><strong>Declarative Table Partitioning by LGA Zone</strong></td>
+<td>Application-level sharding</td>
+<td>Chose native PostgreSQL declarative partitioning because it allows partition pruning directly within the query optimizer without complicating the application codebase.</td>
+</tr>
+<tr>
+<td><strong>Polyglot Persistence for Bedside Tablets</strong></td>
+<td>Purely relational joins for bedside views</td>
+<td>Designed an asynchronous document cache in MongoDB to allow nurses on rounds to retrieve a complete patient health timeline in a single fetch without 7-table join latency.</td>
+</tr>
+</tbody>
+</table></div>
+<hr class='section-divider'/>
+<h2 class='heading-2'>4. Personal Reflection &amp; Next Steps</h2>
+<p>This portfolio has fundamentally transformed how I write and reason about databases. I no longer write queries blindly; I think in terms of disk page buffers, index selectivity, isolation snapshot visibility, and network partition resilience.</p>
+<p>Moving forward, I intend to explore:</p>
+<ol>
+<li>Automated change data capture (CDC) pipelines using Debezium and Kafka to sync PostgreSQL relational writes into MongoDB document profiles in near real time.</li>
+<li>Load-testing Patroni automated failover clusters under simulated regional network drops.</li>
+<li>Integrating spatial indexes (PostGIS) to map travel times between referring PHCs and secondary general hospitals across Lagos traffic corridors.</li>
+</ol>
+</body>
+</html>

@@ -93,7 +93,7 @@ WHERE (d.icd10_code = 'B54' OR d.diagnosis_description ILIKE '%Malaria%')
 ORDER BY e.visit_date, e.visit_time;
 ```
 
-### Explanation for an Average SQL Practitioner
+### Query Breakdown & Logic
 1. **Multi-Table Relational Integration:** Gathers patient identification, triage vitals, doctor in charge, diagnosis, and facility location through standard `JOIN` operations.
 2. **CTEs for 1-to-Many Relationships:** A patient encounter can have multiple lab tests (e.g. mRDT and PCV) or multiple prescribed medications. If joined naively, it duplicates patient rows. The CTEs pre-aggregate lab evidence and ACT prescriptions cleanly into single strings using `STRING_AGG()`.
 3. **Window Functions vs GROUP BY:**

@@ -1,19 +1,7 @@
--- ============================================================================
--- LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
--- Portfolio 3: Task 1 - Atomic Multi-Step Patient Referral Process
--- File: portfolio-3-transactions-concurrency/01_atomic_referral_transaction.sql
--- ============================================================================
--- Description:
--- Demonstrates transaction atomicity (ACID). When referring a patient:
--- 1. Insert referral record in `referral`
--- 2. Update patient's `encounter` status to 'Referred'
--- 3. Insert audit log in `facility_transfer_audit`
--- If any step fails, the entire transaction is rolled back with no partial writes.
--- ============================================================================
+-- Task 1: Atomic Multi-Step Patient Referral Process
+-- Demonstrates atomicity: all steps commit together or roll back on error.
 
--- ============================================================================
--- SCENARIO A: SUCCESSFUL ATOMIC REFERRAL (COMMITTED)
--- ============================================================================
+-- Scenario A: Successful atomic referral
 \echo '>>> SCENARIO A: Executing successful atomic referral transaction...'
 
 BEGIN;
@@ -72,10 +60,8 @@ JOIN referral r ON e.encounter_id = r.encounter_id
 JOIN facility_transfer_audit a ON r.referral_id = a.referral_id
 WHERE e.encounter_id = 1;
 
--- ============================================================================
--- SCENARIO B: SIMULATED TRANSACTION FAILURE & ROLLBACK
--- Attempting illegal self-referral (violating chk_referral_facilities)
--- ============================================================================
+-- Scenario B: Simulated constraint failure and rollback
+-- Attempting illegal self-referral (violates chk_referral_facilities)
 \echo ''
 \echo '>>> SCENARIO B: Demonstrating explicit rollback on constraint failure...'
 

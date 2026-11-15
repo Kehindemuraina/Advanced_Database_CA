@@ -1,8 +1,4 @@
--- ============================================================================
--- LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
--- Portfolio 3: Task 2 - Isolation Level Demonstration Schema & Data
--- File: portfolio-3-transactions-concurrency/02_isolation_level_setup.sql
--- ============================================================================
+-- Task 2: Schema and seed data for appointment slot isolation tests
 
 DROP TABLE IF EXISTS appointment_slot CASCADE;
 

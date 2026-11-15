@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
-# ============================================================================
-# LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-# Portfolio 3: Concurrency Isolation Level Test (Read Committed vs Repeatable Read)
-# ============================================================================
+# Concurrency isolation test: Read Committed vs Repeatable Read
 
 set -e
 
 DB_NAME="lsphcb_emr"
 
-echo "======================================================================"
-echo "TEST 1: CONCURRENT SESSIONS UNDER DEFAULT 'READ COMMITTED'"
-echo "Demonstrating Phantom Read / Concurrent modification vulnerability"
-echo "======================================================================"
+echo "--- Test 1: Concurrent sessions under Read Committed (shows phantom read) ---"
 
 # Reset appointment slots
 psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/02_isolation_level_setup.sql > /dev/null
@@ -55,10 +49,7 @@ wait $SESSION_1_PID
 wait $SESSION_2_PID
 
 echo ""
-echo "======================================================================"
-echo "TEST 2: CONCURRENT SESSIONS UNDER 'REPEATABLE READ'"
-echo "Demonstrating Snapshot Isolation preventing Phantom Reads"
-echo "======================================================================"
+echo "--- Test 2: Concurrent sessions under Repeatable Read (snapshot isolation) ---"
 
 # Reset appointment slots again
 psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/02_isolation_level_setup.sql > /dev/null

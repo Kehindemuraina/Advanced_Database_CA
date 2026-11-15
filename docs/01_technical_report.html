@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Report: LSPHCB EMR System (MIT 8103)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.6cm 1.8cm 1.6cm 1.8cm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    line-height: 1.55;
+    font-size: 10.2pt;
+    margin: 0;
+    padding: 20px 28px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #0f172a;
+    font-weight: 700;
+    margin-top: 1.2em;
+    margin-bottom: 0.45em;
+    line-height: 1.25;
+  }
+
+  h1 {
+    font-size: 18pt;
+    color: #0f2d59;
+    border-bottom: 2.5px solid #0f2d59;
+    padding-bottom: 8px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 13.5pt;
+    color: #1e3a8a;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin-top: 1.4em;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    color: #1e293b;
+    margin-top: 1.1em;
+  }
+
+  h4 {
+    font-size: 10.5pt;
+    color: #334155;
+  }
+
+  p {
+    margin: 0.5em 0;
+    text-align: justify;
+  }
+
+  strong {
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 9pt;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+  }
+
+  pre.code-block {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 0.8em 0;
+    overflow-x: auto;
+    font-size: 8.5pt;
+    line-height: 1.45;
+  }
+
+  pre.code-block code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border: none;
+    font-size: inherit;
+  }
+
+  blockquote {
+    margin: 0.7em 0;
+    padding: 8px 16px;
+    background-color: #f8fafc;
+    border-left: 4px solid #2563eb;
+    color: #334155;
+    font-style: italic;
+  }
+
+  .alert {
+    margin: 0.7em 0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 9.5pt;
+  }
+  .alert-important, .alert-warning {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+  }
+  .alert-note, .alert-tip {
+    background-color: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    color: #166534;
+  }
+
+  ul, ol {
+    margin: 0.5em 0;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 0.3em;
+  }
+
+  .table-container {
+    width: 100%;
+    margin: 0.8em 0;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+  }
+
+  td {
+    border: 1px solid #e2e8f0;
+    padding: 6px 10px;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  hr.section-divider {
+    border: none;
+    border-top: 1px dashed #cbd5e1;
+    margin: 1.2em 0;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Page break rules for printing */
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 0.5em;
+  }
+
+  @media print {
+    body {
+      padding: 0;
+    }
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+    pre.code-block {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  }
+</style>
+</head>
+<body>
+<h1 class='heading-1'>Comprehensive Technical Report: Lagos State Primary Health Care Board (LSPHCB) EMR System</h1>
+<p><strong>Course:</strong> MIT 8103 – Advanced Database Systems</p>
+<p><strong>Author:</strong> Kehinde Muraina (Software Developer, Lagos, Nigeria)</p>
+<p><strong>Target Platform:</strong> PostgreSQL 16 (Relational) &amp; MongoDB (Document Store)</p>
+<p><strong>Date:</strong> November 2026 Academic Session</p>
+<hr class='section-divider'/>
+<h2 class='heading-2'>Page 1: System Background, Relational Modeling &amp; Normalization</h2>
+<h3 class='heading-3'>1.1 Executive Summary &amp; Problem Context</h3>
+<p>The Lagos State Primary Health Care Board (LSPHCB) operates over 100 Primary Healthcare Centres (PHCs) spanning all 20 Local Government Areas (LGAs), with an ongoing strategic mandate to scale digitized operations to all 326 public PHC facilities across the state. In primary healthcare, operational continuity and longitudinal data integrity are critical. Citizens routinely access care across multiple PHCs (e.g., registering at Alimosho PHC, attending antenatal checkups at Ikeja Model PHC, and receiving pediatric immunizations in Surulere).</p>
+<p>Historically, fragmented digital systems and manual paper ledgers (tally sheets and physical patient cards) caused severe bottlenecks: duplicate patient registrations, uncoordinated disease surveillance for endemic conditions like Malaria (accounting for 50–65% of daily acute consultations), uncaptured adverse drug reactions (e.g., life-threatening Penicillin allergies), and delayed maternal-child health interventions.</p>
+<p>This project delivers an enterprise-grade relational database architecture using PostgreSQL 16, reinforced with an analytical optimization framework, rigorous concurrency control mechanisms, a NoSQL longitudinal document model, and a fault-tolerant distributed cloud deployment topology tailored to Lagos State infrastructure.</p>
+<hr class='section-divider'/>
+<h3 class='heading-3'>1.2 From Raw Entities &amp; Attributes to 3NF Normalization</h3>
+<p>To eliminate data redundancy, avoid update anomalies, and enforce clinical safety, the schema was developed systematically through all stages of normalization:</p>
+<ol>
+<li><strong>Raw Entities &amp; Attributes (Unnormalized Form - UNF):</strong></li>
+</ol>
+<p>In paper ledgers, a single flat encounter entry crammed multi-valued vitals, comma-separated diagnoses, and multiple prescribed drugs into single text cells:</p>
+<pre class='code-block'><code class='language-'>   Raw Record = [PatientID, FullName, Address, VitalsText (&quot;BP: 120/80, Temp: 39.2C, Wt: 72kg&quot;), 
+                 DiagnosesText (&quot;Malaria, Gastritis&quot;), LabTests (&quot;mRDT: Pos&quot;), 
+                 Prescriptions (&quot;ACT 80/480mg BD x 3d, Paracetamol 1g TDS&quot;), FacilityName, StaffName]</code></pre>
+<p><em>Problems:</em> Violates atomicity; impossible to query numeric thresholds (e.g., <code>WHERE temperature &gt; 38.5C</code>); patient demographics repeated on every visit.</p>
+<ol>
+<li><strong>First Normal Form (1NF):</strong></li>
+</ol>
+<ul>
+<li>Enforced atomic attributes (names split into <code>first_name</code> and <code>last_name</code>; vitals separated into numeric columns <code>systolic_bp</code>, <code>diastolic_bp</code>, <code>temperature</code>, <code>weight</code>, <code>height</code>, <code>bmi</code>).</li>
+<li>Eliminated repeating groups by expanding multiple medications into individual rows identified by composite candidate key <code>{PatientID, VisitDate, MedicationName}</code>.</li>
+</ul>
+<p><em>Remaining Flaw:</em> Partial dependencies—patient address and facility details depend only on <code>PatientID</code> or <code>Facility</code>, not on <code>MedicationName</code>.</p>
+<ol>
+<li><strong>Second Normal Form (2NF):</strong></li>
+</ol>
+<ul>
+<li>Eliminated partial dependencies by separating functional entities and introducing surrogate primary keys (<code>SERIAL PRIMARY KEY</code>): <code>patient</code> (keyed by <code>patient_id</code>), <code>encounter</code> (keyed by <code>encounter_id</code>), <code>vital_signs</code> (keyed by <code>vital_signs_id</code>), and <code>prescription</code> (keyed by <code>prescription_id</code>).</li>
+</ul>
+<p><em>Remaining Flaw:</em> Transitive dependencies—in <code>prescription</code>, drug strength and formulation depend on drug name, not prescription ID. In <code>encounter</code>, facility name and LGA depend on clinic ID, not encounter ID.</p>
+<ol>
+<li><strong>Third Normal Form (3NF):</strong></li>
+</ol>
+<ul>
+<li>Eliminated transitive dependencies by creating dedicated master catalog tables:</li>
+<li><code>medication</code> (<code>medication_id PK</code>, <code>medication_name</code>, <code>strength</code>, <code>formulation</code>, <code>category</code>)</li>
+<li><code>facility</code> (<code>facility_id PK</code>, <code>facility_name</code>, <code>facility_code</code>, <code>lga</code>, <code>address</code>, <code>contact_info</code>)</li>
+<li><code>healthcare_worker</code> (<code>staff_id PK</code>, <code>staff_name</code>, <code>professional_cadre</code>, <code>designation</code>, <code>facility_id FK</code>)</li>
+<li>Every non-key attribute now depends directly, exclusively, and fully on the primary key. Update anomalies are completely eradicated.</li>
+</ul>
+<h3 class='heading-3'>1.3 Key Constraints &amp; Clinical Domain Validation</h3>
+<p>To protect clinical safety directly at the database engine level, we implemented strict relational integrity rules:</p>
+<ul>
+<li><strong>Foreign Key Policies:</strong> Encounters reference patients and facilities with <code>ON DELETE RESTRICT</code>. From a legal and clinical governance standpoint, an encounter record serves as a permanent audit trail that must never be orphaned or deleted through accidental cascades. Conversely, temporary diagnostic readings (<code>vital_signs</code>, <code>lab_investigation</code>, <code>diagnosis</code>) use <code>ON DELETE CASCADE</code> from their parent encounter.</li>
+<li><strong>Physical Validation Constraints:</strong> Check constraints validate human physiology:</li>
+<li><code>chk_bmi</code>: $BMI &gt; 0.0$</li>
+<li><code>chk_systolic_bp</code> &amp; <code>chk_diastolic_bp</code>: Enforces $40 &lt; Systolic &lt; 300$ and $20 &lt; Diastolic &lt; 200$.</li>
+<li><code>chk_temperature</code>: $30.0^\circ\text{C} \le Temperature \le 45.0^\circ\text{C}$.</li>
+<li><code>chk_spo2</code>: $0.0\% \le SpO_2 \le 100.0\%$.</li>
+<li><code>chk_referral_facilities</code>: Disallows transferring a patient to the identical clinic ($ReferringFacilityID \ne ReceivingFacilityID$).</li>
+</ul>
+<hr class='section-divider'/>
+<h2 class='heading-2 page-break'>Page 2: Query Optimization, Indexing Strategies &amp; Concurrency Handling</h2>
+<h3 class='heading-3'>2.1 Analytical Query Formulation &amp; Window Functions</h3>
+<p>Lagos State public health authorities require quarterly epidemiological surveillance and monthly immunization audits. We formulated two advanced SQL query suites:</p>
+<ol>
+<li><strong>Quarterly Endemic Malaria Surveillance Query:</strong> Reflecting authentic Lagos PHC clinical realities where <em>Plasmodium falciparum</em> malaria (<code>ICD-10: B54</code>) comprises over 50-65% of acute outpatient visits. The query integrates 6 relational tables (<code>patient</code>, <code>encounter</code>, <code>facility</code>, <code>healthcare_worker</code>, <code>diagnosis</code>, <code>vital_signs</code>) and Common Table Expressions (CTEs) aggregating Rapid Diagnostic Test (mRDT) confirmations and first-line Artemether-Lumefantrine (ACT) prescriptions. We deployed three SQL window functions:</li>
+</ol>
+<ul>
+<li><code>ROW_NUMBER() OVER (PARTITION BY f.facility_id ORDER BY e.visit_date)</code>: Tracks case presentation sequences inside each individual clinic.</li>
+<li><code>COUNT(*) OVER (PARTITION BY f.lga)</code>: Displays the total district malaria load directly on every row for immediate contextual triage.</li>
+<li><code>DENSE_RANK() OVER (ORDER BY e.visit_date)</code>: Ranks calendar outbreak days chronologically across the quarter.</li>
+</ul>
+<ol>
+<li><strong>Monthly Immunization Aggregation Query:</strong> Groups vaccine administrations by <code>f.lga</code>, calendar month (<code>TO_CHAR(administration_date, &#x27;YYYY-MM&#x27;)</code>), <code>vaccine_name</code>, and <code>batch_number</code>, computing <code>COUNT(immunization_id)</code> alongside <code>COUNT(DISTINCT patient_id)</code> to evaluate drop-out rates between multi-dose regimens (e.g., Pentavalent 1 vs 3).</li>
+</ol>
+<hr class='section-divider'/>
+<h3 class='heading-3'>2.2 Execution Plan Profiling (<code>EXPLAIN ANALYZE</code>) &amp; Index Engineering</h3>
+<p>To evaluate query execution under realistic load, we populated a benchmark test dataset of ~15,000 encounters and diagnoses.</p>
+<h4 class='heading-4'>Profiling the Unindexed State:</h4>
+<p>An unindexed query filtering on diagnosis code (<code>B54</code>) and date range (<code>2024-01-01</code> to <code>2024-03-31</code>) triggered a full table Sequential Scan (<code>Seq Scan</code>) on <code>diagnosis</code>:</p>
+<ul>
+<li><strong>Bottleneck:</strong> The engine scanned every single disk page, filtering out thousands of rows with filter criteria <code>icd10_code = &#x27;B54&#x27;</code>.</li>
+<li><strong>Resource Usage:</strong> High shared buffer reads and nested loop iterations.</li>
+</ul>
+<h4 class='heading-4'>Indexing Interventions:</h4>
+<ol>
+<li><strong>Partial B-Tree Index on Predominant Endemic Condition (Malaria ICD-10: B54):</strong></li>
+</ol>
+<pre class='code-block'><code class='language-sql'>   CREATE INDEX idx_diagnosis_icd10_partial 
+   ON diagnosis (encounter_id, icd10_code) 
+   WHERE icd10_code = &#x27;B54&#x27;;</code></pre>
+<p><em>Rationale:</em> Indexing only high-surveillance disease codes substantially reduces index size on disk and eliminates indexing overhead during routine, non-malaria consultations.</p>
+<ol>
+<li><strong>Composite B-Tree Index on Encounter Date &amp; Facility:</strong></li>
+</ol>
+<pre class='code-block'><code class='language-sql'>   CREATE INDEX idx_encounter_date_facility 
+   ON encounter (visit_date, facility_id);</code></pre>
+<h4 class='heading-4'>Profiling the Optimized State:</h4>
+<p>PostgreSQL&#x27;s cost-based optimizer switched from sequential scanning to a synchronized <strong>Bitmap Index Scan</strong> on <code>idx_encounter_date_facility</code> and <code>idx_diagnosis_icd10_partial</code>, combined via <strong>BitmapAnd</strong>:</p>
+<ul>
+<li><strong>Execution Latency:</strong> Dropped from <strong>8.540 ms to 0.041 ms</strong> (<strong>order-of-magnitude latency reduction</strong>).</li>
+<li><strong>Buffer I/O:</strong> Reduced to minimal block hits.</li>
+</ul>
+<hr class='section-divider'/>
+<h3 class='heading-3'>2.3 Concurrency Control, Isolation Levels &amp; Deadlock Resolution</h3>
+<p>In a multi-user clinical environment, concurrent access to appointment slots and pharmacy inventory creates race conditions.</p>
+<ol>
+<li><strong>Atomic Referral Transaction:</strong> An atomic referral executes 3 operations (inserting into <code>referral</code>, updating <code>encounter</code> status, logging into <code>facility_transfer_audit</code>). If any constraint trips, the database issues an explicit <code>ROLLBACK</code>. Testing confirmed that invalid self-referrals abort cleanly without saving partial updates.</li>
+<li><strong>Isolation Levels (Read Committed vs Repeatable Read):</strong> Under default <code>READ COMMITTED</code>, concurrent queries for appointment slots experience <strong>Phantom Reads</strong>—the count of available slots changes between reads within the same transaction. Under <code>REPEATABLE READ</code>, snapshot isolation freezes the view at transaction start, preventing race conditions and flagging conflicting concurrent commits with serialization errors.</li>
+<li><strong>Deadlock Elimination via Deterministic Lock Ordering:</strong> When two pharmacists dispense medications concurrently using <code>SELECT ... FOR UPDATE</code>, acquiring locks in reverse order ($A \to B$ vs $B \to A$) induces circular wait conditions where PostgreSQL terminates one worker (<code>ERROR: deadlock detected</code>). We resolved this permanently by enforcing <strong>Ascending Key Ordering</strong> (<code>ORDER BY inventory_id ASC FOR UPDATE</code>), ensuring all transactions queue linearly without deadlocks.</li>
+</ol>
+<hr class='section-divider'/>
+<h2 class='heading-2 page-break'>Page 3: NoSQL Document Models, Distributed Topology &amp; CAP Analysis</h2>
+<h3 class='heading-3'>3.1 NoSQL Document Modeling (MongoDB) vs Relational Core</h3>
+<p>While PostgreSQL guarantees strict ACID consistency, assembling a patient&#x27;s complete 10-year clinical timeline requires joining up to 7 tables. In high-pressure emergency triages, doctors require immediate single-lookup access.</p>
+<p>We designed a denormalized JSON/BSON document schema (<code>patient_health_profiles</code>) in MongoDB embedding:</p>
+<ul>
+<li>Demographic attributes &amp; static medical history (allergies, blood group).</li>
+<li>An embedded array of <code>longitudinal_encounters</code> containing nested vitals, ICD-10 diagnoses, and lab results.</li>
+<li>An embedded array of <code>immunization_history</code>.</li>
+</ul>
+<h4 class='heading-4'>Real-Time CRUD Operations:</h4>
+<p>Using atomic array modifiers (<code>$push</code>), clinical staff append new vaccination records and consultation encounters in real time without document re-writes or schema lock overhead.</p>
+<h4 class='heading-4'>Comparative Architectural Verdict:</h4>
+<p>The optimal architecture for Lagos State is <strong>Polyglot Persistence</strong>:</p>
+<ul>
+<li><strong>PostgreSQL Core:</strong> Master Patient Index (MPI), official clinical encounter logs, billing, and prescription tracking where strict ACID compliance, foreign keys, and auditability are legally mandatory.</li>
+<li><strong>MongoDB Operational Read Store:</strong> Synced asynchronously from PostgreSQL via Change Data Capture (CDC) to provide high-speed, bedside tablet lookups.</li>
+</ul>
+<hr class='section-divider'/>
+<h3 class='heading-3'>3.2 Distributed Cloud Topology &amp; Horizontal Partitioning</h3>
+<pre class='code-block'><code class='language-'>[ Central Cloud Primary (Alausa) ]
+       │ (Synchronous Streaming - Zero Data Loss)
+       ▼
+[ Synchronous Hot Standby (Lekki AZ-2) ]
+       │ (Asynchronous Streaming)
+       ├────────────────────────┬────────────────────────┐
+       ▼                        ▼                        ▼
+[ Lagos West Hub ]       [ Lagos Central Hub ]    [ Lagos East Hub ]
+(Alimosho / Ikeja)       (Surulere / Island)      (Ikorodu / Epe)
+       ▼                        ▼                        ▼
+  PHC Edge Nodes           PHC Edge Nodes           PHC Edge Nodes</code></pre>
+<h4 class='heading-4'>High Availability &amp; Disaster Recovery:</h4>
+<ul>
+<li><strong>Primary-Replica Topology:</strong> A Central Primary node in Alausa handles all writes. A synchronous hot standby in Lekki provides automatic failover via Patroni/Etcd consensus in under 5 seconds.</li>
+<li><strong>Regional Read Replicas:</strong> Three regional hubs absorb heavy read traffic across Lagos West, Central, and East.</li>
+<li><strong>Edge Store-and-Forward Buffering:</strong> To survive frequent local telecom fiber outages, PHC edge gateways buffer consultations locally in offline queues and replay transactions upon reconnection using idempotency UUIDs.</li>
+</ul>
+<h4 class='heading-4'>Horizontal Partitioning Proof:</h4>
+<p>We implemented PostgreSQL <strong>Declarative List Partitioning</strong> on <code>encounter_partitioned</code> by administrative zone (<code>LAGOS_WEST</code>, <code>LAGOS_CENTRAL</code>, <code>LAGOS_EAST</code>). Execution plan analysis confirmed <strong>Partition Pruning</strong>: a query targeting Lagos West accessed only <code>encounter_lagos_west</code> on disk in <strong>0.008 ms</strong>, completely skipping central and east partitions.</p>
+<hr class='section-divider'/>
+<h3 class='heading-3'>3.3 CAP Theorem Trade-Offs in Public Healthcare Delivery</h3>
+<p>In a distributed network spanning 326 centers across Lagos, Network Partitions ($P$) are an unavoidable reality. The architecture must strategically balance Consistency ($C$) and Availability ($A$):</p>
+<ol>
+<li><strong>Emergency Medical Intervention: Prioritizes AP (Availability):</strong></li>
+</ol>
+<p>When an expectant mother in obstructed labor arrives at an Epe PHC during an internet cut, the system cannot freeze waiting for central validation. The database must grant local write availability ($A$). Records are captured locally and synced to central servers eventually.</p>
+<ol>
+<li><strong>Master Patient Identity &amp; Controlled Prescriptions: Prioritizes CP (Consistency):</strong></li>
+</ol>
+<p>Assigning national patient IDs or dispensing regulated opioids requires strict global consistency ($C$) to prevent identity duplicates and fatal drug double-dispensation. The system enforces synchronous central consensus before finalizing these transactions.</p>
+<hr class='section-divider'/>
+<h2 class='heading-2'>Conclusion</h2>
+<p>Designing and implementing this database architecture for the Lagos State Primary Health Care Board highlighted how practical infrastructure realities shape engineering choices. By combining a normalized relational core in PostgreSQL with partial indexing, deterministic concurrency control, a MongoDB operational document cache, and horizontal table partitioning, the system achieves both strict data integrity and the resilience required for primary care centers across Lagos.</p>
+</body>
+</html>

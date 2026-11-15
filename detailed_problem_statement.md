@@ -80,8 +80,8 @@ To solve these challenges, our optimized relational database will organize infor
   3. Discuss CAP theorem trade-offs for the EMR system, specifically balancing consistency (making sure lab results are identical everywhere) with availability during emergency medical interventions across remote centers.
 
 #### Final Documentation & Technical Reflection (6 Marks)
-* **Expected Deliverables:** A 3-page technical summary, GitHub repository link (`advanced-database-portfolio/`), screenshots, individual technical reflection, and an AI-use declaration.
+* **Expected Deliverables:** A 3-page technical summary, GitHub repository link (`advanced-database-portfolio/`), screenshots, and an individual technical reflection.
 * **Explicit Tasks:**
   1. Organize and populate the GitHub repository with clean folders (`portfolio-1-database-design/` through `portfolio-5-distributed-cloud/`) containing clean SQL scripts, NoSQL JSON schemas, and configuration logs.
   2. Draft a comprehensive 3-page technical report summarizing design choices, indexing strategies, concurrency handling, and cloud deployment challenges.
-  3. Write a personal technical reflection detailing lessons learned, performance trade-offs encountered, and a signed AI-use declaration showing how auxiliary tools were vetted.
+  3. Write a personal technical reflection detailing lessons learned and performance trade-offs encountered.

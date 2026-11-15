@@ -24,7 +24,7 @@ Before a unified database, clinics operated with paper registers (the traditiona
 
 ## 2. From Raw Entities & Attributes to 3NF Normalization
 
-To design a clean relational database, an average SQL developer must understand normalization not as abstract mathematics, but as a practical **cleaning process**:
+Designing a clean relational database requires understanding normalization not as an abstract textbook exercise, but as a practical process of eliminating real-world anomalies:
 > *"Each piece of clinical data should live in exactly one place and depend solely on the primary key, the whole key, and nothing but the key."*
 
 Let's walk through how we progressed from raw hospital intake data to **1NF**, **2NF**, and **3NF**.

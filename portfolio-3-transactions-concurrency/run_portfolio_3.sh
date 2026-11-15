@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
-# ============================================================================
-# LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-# Portfolio 3: Transactions and Concurrency Master Runner
-# ============================================================================
+# Runner for Portfolio 3 concurrency and transaction suite
 
 set -e
 
-echo "======================================================================"
-echo "RUNNING PORTFOLIO 3: TRANSACTIONS AND CONCURRENCY SUITE"
-echo "======================================================================"
+echo "--- Running Portfolio 3: Transactions and Concurrency Suite ---"
 
 echo ""
 echo "[1/3] Executing Task 1: Atomic Multi-Step Patient Referral & Rollback..."

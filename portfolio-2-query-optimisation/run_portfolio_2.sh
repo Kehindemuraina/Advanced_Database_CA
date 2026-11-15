@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
-# ============================================================================
-# LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-# Portfolio 2: Query Processing & Optimisation Execution Runner
-# ============================================================================
+# Runner for Portfolio 2 queries and benchmarks
 
 set -e
 
 DB_NAME="lsphcb_emr"
 
-echo "======================================================================"
-echo "RUNNING PORTFOLIO 2: QUERY PROCESSING AND OPTIMISATION"
-echo "======================================================================"
+echo "--- Running Portfolio 2: Query Processing and Optimisation ---"
 
 echo ""
 echo "[1/3] Executing Task 1: Endemic Malaria Analytical Query (Fiscal Q1 2024)..."

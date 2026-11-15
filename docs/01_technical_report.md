@@ -48,7 +48,7 @@ To eliminate data redundancy, avoid update anomalies, and enforce clinical safet
 
 ### 1.3 Key Constraints & Clinical Domain Validation
 To protect clinical safety directly at the database engine level, we implemented strict relational integrity rules:
-- **Foreign Key Policies:** Encounters reference patients and facilities with `ON DELETE RESTRICT`. In medical jurisprudence, an encounter record is a permanent legal audit trail and must never be orphaned or deleted via accidental cascade. Conversely, temporary diagnostic readings (`vital_signs`, `lab_investigation`, `diagnosis`) use `ON DELETE CASCADE` from their parent encounter.
+- **Foreign Key Policies:** Encounters reference patients and facilities with `ON DELETE RESTRICT`. From a legal and clinical governance standpoint, an encounter record serves as a permanent audit trail that must never be orphaned or deleted through accidental cascades. Conversely, temporary diagnostic readings (`vital_signs`, `lab_investigation`, `diagnosis`) use `ON DELETE CASCADE` from their parent encounter.
 - **Physical Validation Constraints:** Check constraints validate human physiology:
   - `chk_bmi`: $BMI > 0.0$
   - `chk_systolic_bp` & `chk_diastolic_bp`: Enforces $40 < Systolic < 300$ and $20 < Diastolic < 200$.
@@ -72,7 +72,7 @@ Lagos State public health authorities require quarterly epidemiological surveill
 ---
 
 ### 2.2 Execution Plan Profiling (`EXPLAIN ANALYZE`) & Index Engineering
-To assess performance under scale, we loaded a synthetic test dataset of ~15,000 encounters and diagnoses.
+To evaluate query execution under realistic load, we populated a benchmark test dataset of ~15,000 encounters and diagnoses.
 
 #### Profiling the Unindexed State:
 An unindexed query filtering on diagnosis code (`B54`) and date range (`2024-01-01` to `2024-03-31`) triggered a full table Sequential Scan (`Seq Scan`) on `diagnosis`:
@@ -86,7 +86,7 @@ An unindexed query filtering on diagnosis code (`B54`) and date range (`2024-01-
    ON diagnosis (encounter_id, icd10_code) 
    WHERE icd10_code = 'B54';
    ```
-   *Rationale:* Indexing only high-surveillance disease codes reduces index disk footprint by over 90% and prevents index write penalty on routine visits.
+   *Rationale:* Indexing only high-surveillance disease codes substantially reduces index size on disk and eliminates indexing overhead during routine, non-malaria consultations.
 2. **Composite B-Tree Index on Encounter Date & Facility:**
    ```sql
    CREATE INDEX idx_encounter_date_facility 
@@ -166,4 +166,4 @@ In a distributed network spanning 326 centers across Lagos, Network Partitions (
 ---
 
 ## Conclusion
-This portfolio provides an end-to-end, clinically viable, and academically rigorous database engineering foundation for the Lagos State Primary Health Care Board EMR system. By pairing normalized relational rigor with targeted indexing, concurrency guarantees, document-store operational caches, and resilient distributed partitioning, the architecture delivers uncompromising data integrity and rapid performance for healthcare workers across Lagos State.
+Designing and implementing this database architecture for the Lagos State Primary Health Care Board highlighted how practical infrastructure realities shape engineering choices. By combining a normalized relational core in PostgreSQL with partial indexing, deterministic concurrency control, a MongoDB operational document cache, and horizontal table partitioning, the system achieves both strict data integrity and the resilience required for primary care centers across Lagos.

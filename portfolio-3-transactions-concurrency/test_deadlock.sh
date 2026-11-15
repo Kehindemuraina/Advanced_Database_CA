@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
-# ============================================================================
-# LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-# Portfolio 3: Task 3 - Deadlock Scenario and Resolution
-# ============================================================================
+# Deadlock test: Out-of-order locking vs deterministic ascending lock ordering
 
 set -e
 
 DB_NAME="lsphcb_emr"
 
-echo "======================================================================"
-echo "DEMONSTRATION 1: TRIGGERING A DEADLOCK (OUT-OF-ORDER ROW LOCKS)"
-echo "======================================================================"
+echo "--- Demo 1: Triggering deadlock with out-of-order locks ---"
 
 # Reset inventory table
 psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/03_inventory_deadlock_setup.sql > /dev/null
@@ -66,10 +61,7 @@ wait $SESSION_A_PID || true
 wait $SESSION_B_PID || true
 
 echo ""
-echo "======================================================================"
-echo "DEMONSTRATION 2: DEADLOCK RESOLUTION (CONSISTENT LOCK ORDERING)"
-echo "Both transactions acquire row locks strictly ordered by inventory_id ASC"
-echo "======================================================================"
+echo "--- Demo 2: Deadlock resolution with ordered locks (inventory_id ASC) ---"
 
 # Reset inventory table
 psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/03_inventory_deadlock_setup.sql > /dev/null

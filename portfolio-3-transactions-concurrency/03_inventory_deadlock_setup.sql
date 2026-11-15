@@ -1,8 +1,4 @@
--- ============================================================================
--- LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
--- Portfolio 3: Task 3 - Shared Facility Inventory Setup for Deadlock Testing
--- File: portfolio-3-transactions-concurrency/03_inventory_deadlock_setup.sql
--- ============================================================================
+-- Task 3: Clinic drug inventory setup for deadlock tests
 
 DROP TABLE IF EXISTS facility_inventory CASCADE;
 

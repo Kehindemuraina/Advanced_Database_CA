@@ -1,31 +1,17 @@
 #!/usr/bin/env python3
-"""
-============================================================================
-LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-Portfolio 4: NoSQL Document Model & CRUD Execution Engine
-File: portfolio-4-nosql-data-models/execute_mongo_crud.py
-============================================================================
-Description:
-Demonstrates MongoDB Document Store CRUD operations, JSON schema validation,
-and longitudinal patient timeline manipulation using native Python.
-============================================================================
-"""
+"""MongoDB Document Store CRUD simulation in native Python."""
 
 import json
 from datetime import datetime
 
-# Simulated in-memory MongoDB Collection
+# Simulated in-memory collection for demonstration
 mongodb_collection = []
 
 def run_portfolio_4_demonstration():
-    print("=" * 70)
-    print("PORTFOLIO 4: NOSQL DOCUMENT MODEL (PATIENT HEALTH PROFILE)")
-    print("=" * 70)
+    print("--- Portfolio 4: NoSQL Document Model (Patient Health Profile) ---")
 
-    # ------------------------------------------------------------------------
-    # 1. CREATE: Insert Patient Health Profile Document
-    # ------------------------------------------------------------------------
-    print("\n[Step 1] CREATE: Inserting initial Patient Health Profile document...")
+    # 1. Create: Insert patient health profile document
+    print("\n[Step 1] Inserting initial Patient Health Profile document...")
     patient_doc = {
         "patient_id": 101,
         "demographics": {
@@ -92,10 +78,8 @@ def run_portfolio_4_demonstration():
     print(f"Initial encounters count: {len(patient_doc['longitudinal_encounters'])}")
     print(f"Initial immunizations count: {len(patient_doc['immunization_history'])}")
 
-    # ------------------------------------------------------------------------
-    # 2. READ: Query Single Document Without JOIN Overhead
-    # ------------------------------------------------------------------------
-    print("\n[Step 2] READ: Querying complete patient timeline in a single fetch...")
+    # 2. Read: Single document fetch without joins
+    print("\n[Step 2] Querying complete patient timeline in a single fetch...")
     queried = next((p for p in mongodb_collection if p["patient_id"] == 101), None)
     if queried:
         demo = queried["demographics"]
@@ -103,10 +87,8 @@ def run_portfolio_4_demonstration():
         print(f"Allergies: {queried['medical_history']['allergies']}")
         print(f"Immunization count: {len(queried['immunization_history'])}")
 
-    # ------------------------------------------------------------------------
-    # 3. UPDATE: Real-Time Atomic Updates ($push and $set)
-    # ------------------------------------------------------------------------
-    print("\n[Step 3] UPDATE: Atomic $push of new vaccination and encounter...")
+    # 3. Update: Atomic updates to timeline ($push and $set)
+    print("\n[Step 3] Appending new vaccination and encounter via $push...")
     # Simulate $push to immunization_history
     queried["immunization_history"].append({
         "vaccine_name": "Pentavalent",
@@ -153,11 +135,8 @@ def run_portfolio_4_demonstration():
     })
     print("-> Appended Encounter 502 with Malaria RDT and ACT prescription.")
 
-    # ------------------------------------------------------------------------
-    # 4. AGGREGATION & TIMELINE VIEW
-    # ------------------------------------------------------------------------
+    # 4. Aggregation & timeline view
     print("\n[Step 4] Longitudinal Timeline Summary for Patient 101:")
-    print("-" * 50)
     for enc in queried["longitudinal_encounters"]:
         diag_str = ", ".join([d["description"] for d in enc["diagnoses"]])
         print(f"Date: {enc['visit_date']} | Facility: {enc['facility_name']}")
@@ -168,9 +147,7 @@ def run_portfolio_4_demonstration():
     for imm in queried["immunization_history"]:
         print(f"  - {imm['administration_date']}: {imm['vaccine_name']} ({imm['dose']}) [Batch: {imm['batch_number']}]")
 
-    print("\n" + "=" * 70)
-    print("NoSQL CRUD demonstration completed successfully.")
-    print("=" * 70)
+    print("\n--- Portfolio 4 completed successfully ---")
 
 if __name__ == "__main__":
     run_portfolio_4_demonstration()

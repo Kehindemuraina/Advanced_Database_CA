@@ -1,15 +1,7 @@
-// ============================================================================
-// LAGOS STATE PRIMARY HEALTH CARE BOARD (LSPHCB) EMR SYSTEM
-// Portfolio 4: MongoDB Shell (mongosh) CRUD Operations Script
-// File: portfolio-4-nosql-data-models/02_mongo_crud_operations.js
-// ============================================================================
-
-// Switch to LSPHCB EMR database
+// MongoDB CRUD operations for Patient Health Profile
 use lsphcb_nosql;
 
-// ----------------------------------------------------------------------------
-// 1. CREATE: Insert Patient Health Profile Document
-// ----------------------------------------------------------------------------
+// 1. Create: Insert initial patient health profile document
 db.patient_health_profiles.insertOne({
   patient_id: 101,
   demographics: {
@@ -72,11 +64,9 @@ db.patient_health_profiles.insertOne({
   ]
 });
 
-// ----------------------------------------------------------------------------
-// 2. READ: Query Longitudinal Timeline & Vaccination Status
-// ----------------------------------------------------------------------------
+// 2. Read: Query longitudinal timeline and vaccination status
 
-// A. Retrieve complete longitudinal health profile for Amina Bello
+// A. Complete patient timeline in single document fetch
 db.patient_health_profiles.findOne(
   { patient_id: 101 },
   { "demographics.first_name": 1, "demographics.last_name": 1, immunization_history: 1, longitudinal_encounters: 1 }
@@ -88,11 +78,9 @@ db.patient_health_profiles.find({
   "medical_history.allergies": "Penicillin"
 });
 
-// ----------------------------------------------------------------------------
-// 3. UPDATE: Atomic Updates to Clinical Timeline
-// ----------------------------------------------------------------------------
+// 3. Update: Atomic updates to clinical timeline
 
-// A. Real-time update: Add 10-week Pentavalent vaccination to immunization history ($push)
+// A. Real-time update: Add Pentavalent vaccination ($push)
 db.patient_health_profiles.updateOne(
   { patient_id: 101 },
   {
@@ -158,9 +146,7 @@ db.patient_health_profiles.updateOne(
   }
 );
 
-// ----------------------------------------------------------------------------
-// 4. AGGREGATION PIPELINE: Longitudinal Vaccination Statistics
-// ----------------------------------------------------------------------------
+// 4. Aggregation Pipeline: Longitudinal vaccination statistics
 db.patient_health_profiles.aggregate([
   { $unwind: "$immunization_history" },
   {

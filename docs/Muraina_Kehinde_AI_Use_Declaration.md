@@ -22,4 +22,4 @@ AI assistance was strictly scoped to documentation, debugging, testing automatio
 
 ## 2. Author Verification and Accountability
 
-I retain full ownership of the intellectual and technical direction of this project. All AI-generated outputs—including documentation, test scripts, diagrams, and code suggestions—were critically reviewed, validated, and tested. I assume full responsibility for the accuracy, functionality, and academic integrity of the entire submission.
+The author retained full ownership of the intellectual and technical direction of this project. All AI-generated outputs—including documentation, test scripts, diagrams, and code suggestions—were critically reviewed, validated, and tested. The author assumes full responsibility for the accuracy, functionality, and academic integrity of the entire submission.

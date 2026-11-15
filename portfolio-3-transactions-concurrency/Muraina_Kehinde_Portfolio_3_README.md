@@ -25,7 +25,7 @@ Simulate an atomic 3-step referral pipeline:
 3. Log the ambulance/transport status into `facility_transfer_audit`.
 4. If any constraint fails, issue an immediate `ROLLBACK` so that no orphaned state is saved.
 
-### Implementation Details (`01_atomic_referral_transaction.sql`)
+### Implementation Details (`Muraina_Kehinde_Portfolio_3_Atomic_Referral.sql`)
 We used PostgreSQL's data-modifying Common Table Expressions (CTEs) within a transaction block:
 ```sql
 BEGIN;
@@ -78,7 +78,7 @@ At Ikeja Model Primary Healthcare Centre, the Obstetric Ultrasound clinic has a 
 
 If 4 appointments are currently booked, there is only **1 slot remaining**. Two clinicians (Clinician A and Clinician B) simultaneously check slot availability for two expectant mothers.
 
-### Live Test Comparison (`test_isolation.sh`)
+### Live Test Comparison (`Muraina_Kehinde_Portfolio_3_Test_Isolation.sh`)
 
 #### Under Default `READ COMMITTED`:
 1. Clinician A queries available slots in Session 1:
@@ -110,7 +110,7 @@ When two healthcare staff dispense medication combinations from shared inventory
 
 If Transaction A locks Item 1 using `FOR UPDATE`, and Transaction B locks Item 2 using `FOR UPDATE`, both sessions subsequently wait for each other's locked row. Neither can proceed.
 
-### Live PostgreSQL Deadlock Output (`test_deadlock.sh`):
+### Live PostgreSQL Deadlock Output (`Muraina_Kehinde_Portfolio_3_Test_Deadlock.sh`):
 ```
 ERROR:  deadlock detected
 DETAIL:  Process 8916 waits for ShareLock on transaction 957; blocked by process 8919.
@@ -142,6 +142,6 @@ When both sessions lock `inventory_id` in ascending order (`1` before `2`):
 ## 5. How to Run the Tests
 ```bash
 # Make runnable and execute entire transaction suite
-chmod +x portfolio-3-transactions-concurrency/run_portfolio_3.sh
-./portfolio-3-transactions-concurrency/run_portfolio_3.sh
+chmod +x portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Runner.sh
+./portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Runner.sh
 ```

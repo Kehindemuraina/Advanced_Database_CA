@@ -74,7 +74,7 @@ Clinical queries in primary healthcare are overwhelmingly local. Doctors at Alim
 
 Scanning a single monolithic 10-million-row encounter table degrades performance. By horizontally partitioning tables based on **Lagos Administrative Health Districts**, each zone queries its own dedicated partition on disk.
 
-### Implementation (`02_horizontal_partitioning_lga.sql`)
+### Implementation (`Muraina_Kehinde_Portfolio_5_Horizontal_Partitioning_LGA.sql`)
 ```sql
 CREATE TABLE encounter_partitioned (
     encounter_id SERIAL,
@@ -168,6 +168,6 @@ flowchart LR
 
 ## 5. How to Run
 ```bash
-chmod +x portfolio-5-distributed-cloud/run_portfolio_5.sh
-./portfolio-5-distributed-cloud/run_portfolio_5.sh
+chmod +x portfolio-5-distributed-cloud/Muraina_Kehinde_Portfolio_5_Runner.sh
+./portfolio-5-distributed-cloud/Muraina_Kehinde_Portfolio_5_Runner.sh
 ```

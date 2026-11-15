@@ -24,7 +24,7 @@ In this portfolio component, we:
 
 ## 2. Task 1: Endemic Malaria Surveillance Analytical Query (Fiscal Q1 2024)
 
-### SQL Implementation (`01_malaria_quarterly_cases.sql`)
+### SQL Implementation (`Muraina_Kehinde_Portfolio_2_Malaria_Quarterly_Cases.sql`)
 ```sql
 WITH confirmed_malaria_labs AS (
     -- Subquery / CTE: Aggregates Rapid Diagnostic Tests (mRDT) and microscopy
@@ -105,7 +105,7 @@ ORDER BY e.visit_date, e.visit_time;
 
 ## 3. Task 2: Monthly Immunization Aggregation Across LGAs
 
-### SQL Implementation (`02_immunization_monthly_aggregates.sql`)
+### SQL Implementation (`Muraina_Kehinde_Portfolio_2_Immunization_Aggregates.sql`)
 ```sql
 SELECT 
     f.lga AS local_government_area,
@@ -172,5 +172,5 @@ When filtering large clinical databases on diagnosis codes (`d.icd10_code = 'B54
 
 ## 5. How to Run
 ```bash
-./portfolio-2-query-optimisation/run_portfolio_2.sh
+./portfolio-2-query-optimisation/Muraina_Kehinde_Portfolio_2_Runner.sh
 ```

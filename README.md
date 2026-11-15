@@ -24,40 +24,66 @@ This portfolio provides a complete, production-grade database systems solution, 
 
 ```
 .
-├── detailed_problem_statement.md             # Complete project brief and grading rubric
+├── detailed_problem_statement.md                  # Complete project brief and grading rubric
+├── Muraina_Kehinde_Detailed_Problem_Statement.md  # Convention copy of problem statement
+├── Muraina_Kehinde_README.md                      # Convention copy of Markdown documentation
+├── Muraina_Kehinde_README.txt                     # Plain-text ASCII submission overview
+├── package_submission.py                          # Automated submission packaging engine
 ├── docs/
-│   ├── 01_technical_report.md                # 3-Page formal comprehensive technical summary
-│   ├── 01_technical_report.pdf               # Rendered academic PDF publication
-│   ├── 02_individual_technical_reflection.md # Personal reflection on trade-offs and lessons learned
-│   ├── 02_individual_technical_reflection.pdf# Rendered reflection PDF publication
-│   └── generate_submission_docs.py           # Automated Markdown-to-PDF rendering utility
+│   ├── 01_technical_report.md                     # 3-Page formal comprehensive technical summary
+│   ├── 01_technical_report.pdf                    # Rendered academic PDF publication
+│   ├── Muraina_Kehinde_Technical_Report.pdf       # Convention copy of Technical Report PDF
+│   ├── 02_individual_technical_reflection.md      # Personal reflection on trade-offs and lessons learned
+│   ├── 02_individual_technical_reflection.pdf     # Rendered reflection PDF publication
+│   ├── Muraina_Kehinde_Technical_Reflection.pdf   # Convention copy of Reflection PDF
+│   ├── LSPHCB_Normalisation_ERD_Report.pdf        # 11-Page Normalisation walkthrough with Chen ERDs
+│   ├── Muraina_Kehinde_Normalisation_ERD_Report.pdf# Convention copy of Normalisation & ERD Report
+│   ├── AI_USE_DECLARATION.md                      # Academic declaration on Generative AI usage
+│   └── Muraina_Kehinde_AI_Use_Declaration.pdf     # Rendered AI declaration PDF publication
 ├── portfolio-1-database-design/
-│   ├── 01_schema.sql                        # PostgreSQL DDL for all 14 core tables + constraints
-│   ├── 02_seed_data.sql                     # Rich seed dataset covering Lagos PHCs and patients
-│   └── README.md                            # ER Diagram, 1NF-3NF normalization narrative, keys
+│   ├── 01_schema.sql                             # PostgreSQL DDL for all 14 core tables + constraints
+│   ├── Muraina_Kehinde_Portfolio_1_Schema.sql    # Convention copy of DDL schema
+│   ├── 02_seed_data.sql                          # Rich seed dataset covering Lagos PHCs and patients
+│   ├── Muraina_Kehinde_Portfolio_1_Seed_Data.sql # Convention copy of seed data
+│   ├── Muraina_Kehinde_Portfolio_1_Database_Design.sql # Consolidated schema + seed dataset
+│   └── README.md                                 # ER Diagram, 1NF-3NF normalization narrative, keys
 ├── portfolio-2-query-optimisation/
-│   ├── 01_malaria_quarterly_cases.sql       # Complex analytical query with CTEs and 3 window functions (Malaria)
-│   ├── 02_immunization_monthly_aggregates.sql # GROUP BY monthly batch aggregate query across LGAs
-│   ├── 03_query_optimization_indexes.sql    # EXPLAIN ANALYZE benchmarks and partial B-Tree indexes
-│   ├── run_portfolio_2.sh                   # Automated execution runner script
-│   └── README.md                            # Execution plan profiling, before/after metrics
+│   ├── 01_malaria_quarterly_cases.sql            # Complex analytical query with CTEs and 3 window functions
+│   ├── Muraina_Kehinde_Portfolio_2_Malaria_Quarterly_Cases.sql # Convention copy of Malaria query
+│   ├── 02_immunization_monthly_aggregates.sql    # GROUP BY monthly batch aggregate query across LGAs
+│   ├── Muraina_Kehinde_Portfolio_2_Immunization_Aggregates.sql # Convention copy of Immunization query
+│   ├── 03_query_optimization_indexes.sql         # EXPLAIN ANALYZE benchmarks and partial B-Tree indexes
+│   ├── Muraina_Kehinde_Portfolio_2_Optimization_Indexes.sql # Convention copy of Index script
+│   ├── Muraina_Kehinde_Portfolio_2_Query_Optimisation.sql # Consolidated analytical suite
+│   ├── Query Analyzer Result.png                 # Execution plan before/after profiling evidence
+│   ├── Muraina_Kehinde_Portfolio_2_Execution_Plan_Result.png # Convention copy of visual plan
+│   ├── run_portfolio_2.sh                        # Automated execution runner script
+│   └── README.md                                 # Execution plan profiling, before/after metrics
 ├── portfolio-3-transactions-concurrency/
-│   ├── 01_atomic_referral_transaction.sql   # Atomic 3-step referral pipeline with COMMIT & ROLLBACK
-│   ├── 02_isolation_level_setup.sql         # Appointment slot quota schema for race condition tests
-│   ├── 03_inventory_deadlock_setup.sql      # Clinic drug inventory schema for deadlock tests
-│   ├── test_isolation.sh                    # Parallel psql test: Read Committed vs Repeatable Read
-│   ├── test_deadlock.sh                     # Live PostgreSQL deadlock reproduction and ordered resolution
-│   ├── run_portfolio_3.sh                   # Automated concurrency test runner
-│   └── README.md                            # ACID properties, locking mechanisms, deadlock prevention
+│   ├── 01_atomic_referral_transaction.sql        # Atomic 3-step referral pipeline with COMMIT & ROLLBACK
+│   ├── Muraina_Kehinde_Portfolio_3_Atomic_Referral.sql # Convention copy of atomic referral
+│   ├── 02_isolation_level_setup.sql              # Appointment slot quota schema for race condition tests
+│   ├── Muraina_Kehinde_Portfolio_3_Isolation_Level_Setup.sql # Convention copy of isolation schema
+│   ├── 03_inventory_deadlock_setup.sql           # Clinic drug inventory schema for deadlock tests
+│   ├── Muraina_Kehinde_Portfolio_3_Inventory_Deadlock_Setup.sql # Convention copy of inventory setup
+│   ├── Muraina_Kehinde_Portfolio_3_Transactions_Concurrency.sql # Consolidated concurrency suite
+│   ├── test_isolation.sh                         # Parallel psql test: Read Committed vs Repeatable Read
+│   ├── test_deadlock.sh                          # Live PostgreSQL deadlock reproduction and ordered resolution
+│   ├── run_portfolio_3.sh                        # Automated concurrency test runner
+│   └── README.md                                 # ACID properties, locking mechanisms, deadlock prevention
 ├── portfolio-4-nosql-data-models/
-│   ├── 01_patient_profile_schema.json       # JSON Schema validation for Patient Health Profile
-│   ├── 02_mongo_crud_operations.js          # MongoDB shell (mongosh) atomic CRUD operations
-│   ├── execute_mongo_crud.py                # Standalone runnable Python engine executing NoSQL CRUD
-│   └── README.md                            # Document store modeling and PostgreSQL vs MongoDB comparison
+│   ├── 01_patient_profile_schema.json            # JSON Schema validation for Patient Health Profile
+│   ├── Muraina_Kehinde_Portfolio_4_Patient_Document_Schema.json # Convention copy of JSON Schema
+│   ├── 02_mongo_crud_operations.js               # MongoDB shell (mongosh) atomic CRUD operations
+│   ├── Muraina_Kehinde_Portfolio_4_Mongo_CRUD_Operations.js # Convention copy of mongosh CRUD
+│   ├── execute_mongo_crud.py                     # Standalone runnable Python engine executing NoSQL CRUD
+│   ├── Muraina_Kehinde_Portfolio_4_Execute_Mongo_CRUD.py # Convention copy of Python NoSQL runner
+│   └── README.md                                 # Document store modeling and PostgreSQL vs MongoDB comparison
 └── portfolio-5-distributed-cloud/
-    ├── 02_horizontal_partitioning_lga.sql   # Declarative table partitioning by LGA zone in PostgreSQL
-    ├── run_portfolio_5.sh                   # Partitioning verification runner
-    └── README.md                            # Distributed topology, replication, and CAP theorem analysis
+    ├── 02_horizontal_partitioning_lga.sql        # Declarative table partitioning by LGA zone in PostgreSQL
+    ├── Muraina_Kehinde_Portfolio_5_Horizontal_Partitioning_LGA.sql # Convention copy of Partitioning DDL
+    ├── run_portfolio_5.sh                        # Partitioning verification runner
+    └── README.md                                 # Distributed topology, replication, and CAP theorem analysis
 ```
 
 ---
@@ -77,23 +103,26 @@ psql -d postgres -c "DROP DATABASE IF EXISTS lsphcb_emr;"
 psql -d postgres -c "CREATE DATABASE lsphcb_emr;"
 
 # Apply Schema DDL
-psql -d lsphcb_emr -f portfolio-1-database-design/01_schema.sql
+psql -d lsphcb_emr -f portfolio-1-database-design/Muraina_Kehinde_Portfolio_1_Schema.sql
 
 # Seed initial clinical data
-psql -d lsphcb_emr -f portfolio-1-database-design/02_seed_data.sql
+psql -d lsphcb_emr -f portfolio-1-database-design/Muraina_Kehinde_Portfolio_1_Seed_Data.sql
+
+# Or execute consolidated script
+psql -d lsphcb_emr -f portfolio-1-database-design/Muraina_Kehinde_Portfolio_1_Database_Design.sql
 ```
 
 ### Step 2: Run Portfolio 2 (Query Optimization Benchmarks)
 ```bash
-chmod +x portfolio-2-query-optimisation/run_portfolio_2.sh
-./portfolio-2-query-optimisation/run_portfolio_2.sh
+chmod +x portfolio-2-query-optimisation/Muraina_Kehinde_Portfolio_2_Runner.sh
+./portfolio-2-query-optimisation/Muraina_Kehinde_Portfolio_2_Runner.sh
 ```
 *Expected Outcome:* Generates high-volume dataset, runs Malaria surveillance window query, runs LGA monthly immunization aggregates, profiles unindexed query (8.54 ms), creates partial & composite indexes, and demonstrates ~18.6x speedup (0.45 ms).
 
 ### Step 3: Run Portfolio 3 (Transactions & Concurrency Control)
 ```bash
-chmod +x portfolio-3-transactions-concurrency/run_portfolio_3.sh
-./portfolio-3-transactions-concurrency/run_portfolio_3.sh
+chmod +x portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Runner.sh
+./portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Runner.sh
 ```
 *Expected Outcome:*
 - Executes atomic patient referral transaction and confirms rollback on illegal self-referral.
@@ -102,20 +131,20 @@ chmod +x portfolio-3-transactions-concurrency/run_portfolio_3.sh
 
 ### Step 4: Run Portfolio 4 (NoSQL Document Model Engine)
 ```bash
-python3 portfolio-4-nosql-data-models/execute_mongo_crud.py
+python3 portfolio-4-nosql-data-models/Muraina_Kehinde_Portfolio_4_Execute_Mongo_CRUD.py
 ```
 *Expected Outcome:* Validates JSON schema, inserts initial patient profile, performs single-fetch timeline query without JOIN overhead, and applies atomic `$push` updates to immunization and clinical encounter arrays.
 
 ### Step 5: Run Portfolio 5 (Distributed Partitioning)
 ```bash
-chmod +x portfolio-5-distributed-cloud/run_portfolio_5.sh
-./portfolio-5-distributed-cloud/run_portfolio_5.sh
+chmod +x portfolio-5-distributed-cloud/Muraina_Kehinde_Portfolio_5_Runner.sh
+./portfolio-5-distributed-cloud/Muraina_Kehinde_Portfolio_5_Runner.sh
 ```
 *Expected Outcome:* Sets up declarative list partitioning on encounters across `LAGOS_WEST`, `LAGOS_CENTRAL`, and `LAGOS_EAST`, demonstrating **Partition Pruning** in 0.008 ms.
 
-### Step 6: Generate Academic PDF Reports
+### Step 6: Generate Submission Package
 ```bash
-python docs/generate_submission_docs.py
+python package_submission.py --student-id 202601234
 ```
 *Expected Outcome:* Generates styled academic HTML and PDF publications for the technical report (`docs/01_technical_report.pdf`) and individual reflection (`docs/02_individual_technical_reflection.pdf`).
 

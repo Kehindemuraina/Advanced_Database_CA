@@ -8,7 +8,7 @@ DB_NAME="lsphcb_emr"
 echo "--- Demo 1: Triggering deadlock with out-of-order locks ---"
 
 # Reset inventory table
-psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/03_inventory_deadlock_setup.sql > /dev/null
+psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Inventory_Deadlock_Setup.sql > /dev/null
 
 # Session A locks Item 1, waits 1.5s, attempts to lock Item 2
 # Session B locks Item 2, waits 1.5s, attempts to lock Item 1
@@ -64,7 +64,7 @@ echo ""
 echo "--- Demo 2: Deadlock resolution with ordered locks (inventory_id ASC) ---"
 
 # Reset inventory table
-psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/03_inventory_deadlock_setup.sql > /dev/null
+psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Inventory_Deadlock_Setup.sql > /dev/null
 
 (
     echo "--- Session 1 (Dispensing Prescription): Locks Item 1 then Item 2 (ASC) ---"

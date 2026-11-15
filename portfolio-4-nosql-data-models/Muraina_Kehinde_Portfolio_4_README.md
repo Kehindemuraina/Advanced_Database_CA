@@ -15,7 +15,7 @@ By adopting a **Document-Oriented NoSQL model (MongoDB)**, we model the **Patien
 
 ---
 
-## 2. Document Schema Design (`01_patient_profile_schema.json`)
+## 2. Document Schema Design (`Muraina_Kehinde_Portfolio_4_Patient_Document_Schema.json`)
 
 The document schema uses standard JSON Schema validation (`$jsonSchema`) to enforce structure while allowing flexible nested documents.
 
@@ -75,7 +75,7 @@ The document schema uses standard JSON Schema validation (`$jsonSchema`) to enfo
 
 ---
 
-## 3. Real-Time MongoDB CRUD Operations (`02_mongo_crud_operations.js`)
+## 3. Real-Time MongoDB CRUD Operations (`Muraina_Kehinde_Portfolio_4_Mongo_CRUD_Operations.js`)
 
 ### 1. Single Fetch (No JOIN Overhead)
 ```javascript
@@ -146,5 +146,5 @@ For the Lagos State Primary Health Care Board:
 ## 5. Verification & Execution
 To execute and inspect the Python CRUD demonstration:
 ```bash
-python3 portfolio-4-nosql-data-models/execute_mongo_crud.py
+python3 portfolio-4-nosql-data-models/Muraina_Kehinde_Portfolio_4_Execute_Mongo_CRUD.py
 ```

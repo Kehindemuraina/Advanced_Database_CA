@@ -377,9 +377,12 @@ We embedded physical and clinical boundary checks directly in the PostgreSQL DDL
 The DDL and Seed scripts are fully tested against PostgreSQL 16:
 ```bash
 # Execute DDL schema
-psql -d lsphcb_emr -f portfolio-1-database-design/01_schema.sql
+psql -d lsphcb_emr -f portfolio-1-database-design/Muraina_Kehinde_Portfolio_1_Schema.sql
 
 # Execute Seed dataset
-psql -d lsphcb_emr -f portfolio-1-database-design/02_seed_data.sql
+psql -d lsphcb_emr -f portfolio-1-database-design/Muraina_Kehinde_Portfolio_1_Seed_Data.sql
+
+# Alternatively, execute consolidated design script
+psql -d lsphcb_emr -f portfolio-1-database-design/Muraina_Kehinde_Portfolio_1_Database_Design.sql
 ```
 Both execute with 0 errors, populating all 14 clinical and operational tables across Lagos State LGAs (Alimosho, Surulere, Ikeja, Lagos Island, Ikorodu, Mushin, Kosofe, Eti-Osa).

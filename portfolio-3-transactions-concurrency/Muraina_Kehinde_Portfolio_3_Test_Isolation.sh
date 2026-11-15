@@ -8,7 +8,7 @@ DB_NAME="lsphcb_emr"
 echo "--- Test 1: Concurrent sessions under Read Committed (shows phantom read) ---"
 
 # Reset appointment slots
-psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/02_isolation_level_setup.sql > /dev/null
+psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Isolation_Level_Setup.sql > /dev/null
 
 # Session 1 queries slots, sleeps 2 seconds, then queries again
 # Concurrently, Session 2 inserts the 5th appointment slot after 1 second and commits.
@@ -52,7 +52,7 @@ echo ""
 echo "--- Test 2: Concurrent sessions under Repeatable Read (snapshot isolation) ---"
 
 # Reset appointment slots again
-psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/02_isolation_level_setup.sql > /dev/null
+psql -d "$DB_NAME" -f portfolio-3-transactions-concurrency/Muraina_Kehinde_Portfolio_3_Isolation_Level_Setup.sql > /dev/null
 
 (
     echo "--- [Session 1 (Clinician A)]: Starting REPEATABLE READ transaction ---"

@@ -3,6 +3,7 @@
 **Author:** Kehinde Muraina (Software Developer, Lagos, Nigeria)  
 **Target Database Engines:** PostgreSQL 16+ (Relational Core) & MongoDB (Document Store)  
 **Repository Architecture:** `advanced-database-portfolio/`
+[**Repository Link**](https://github.com/Kehindemuraina/Advanced_Database_CA)
 
 ---
 
